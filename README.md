@@ -35,7 +35,7 @@ yarn add wasdtv
 
 ### Obtaining token
 
-To use REST api you should make token in [account setting area](https://wasd.tv/general-settings/API)
+To use REST api you should get token in [account setting area](https://wasd.tv/general-settings/API)
 
 ### REST requests
 
@@ -100,7 +100,7 @@ wasd.on('message', (ctx) => {
 
 Due to the fact that Wasd has almost no adequate api documentation, typing was done by reversing responses. For this reason types can be incorrect and incomplete.
 
-If you notice an error, please make a pull request or at least leave the issue.
+If you notice an error, please make a pull request or at least an issue.
 
 ## Contributing
 
