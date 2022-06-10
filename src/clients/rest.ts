@@ -225,13 +225,13 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
-  public getMediaStream(stream_id: number): PassThrough {
-    return m3u8stream(`https://cdn-curie.wasd.tv/live/${stream_id}/tracks-v1a1/mono.m3u8`)
+  public getMediaStream(user_id: number): PassThrough {
+    return m3u8stream(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)
   }
 
-  public async getMediaStreamMetadata(stream_id: number): Promise<Wasd.MediaStreamMetadata> {
+  public async getMediaStreamMetadata(user_id: number): Promise<Wasd.MediaStreamMetadata> {
     return axios
-      .get(`https://cdn.wasd.tv/live/${stream_id}/index.m3u8`)
+      .get(`https://cdn.wasd.tv/live/${user_id}/index.m3u8`)
       .then(({ data }) => {
         const parse = {
           bandwidth: data
