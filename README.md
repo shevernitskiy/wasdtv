@@ -1,6 +1,6 @@
 <div align="center">
 
-# Gismeteo weather (unofficial)
+# WASD.tv API client
 
 <img src="https://static.wasd.tv/assets/fe/images/logo/clear-logo-dark.svg" height="150">
 
@@ -8,7 +8,7 @@
 
 <p align=center>
   <i>
-    WASD.tv API client (REST & Chat)
+    This is client for wasd.tx api
   </i>
 </p>
 
