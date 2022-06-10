@@ -7,7 +7,7 @@ export default [
       format: 'esm',
     },
     plugins: [typescript()],
-    external: ['axios', 'socket.io-client', 'events'],
+    external: ['axios', 'socket.io-client', 'events', 'm3u8stream'],
   },
   {
     input: './src/wasdtv.ts',
@@ -16,6 +16,6 @@ export default [
       format: 'cjs',
     },
     plugins: [typescript()],
-    external: ['axios', 'socket.io-client', 'events'],
+    external: ['axios', 'socket.io-client', 'events', 'm3u8stream'],
   },
 ]

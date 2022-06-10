@@ -1,4 +1,6 @@
 import axios, { AxiosInstance, AxiosError } from 'axios'
+import m3u8stream from 'm3u8stream'
+import { PassThrough } from 'stream'
 
 import { HttpError, ApiError } from '../core/error'
 import { Wasd } from '../types/api'
@@ -223,7 +225,69 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
-  private errorHandler(err: AxiosError) {
+  public getMediaStream(stream_id: number): PassThrough {
+    return m3u8stream(`https://cdn-curie.wasd.tv/live/${stream_id}/tracks-v1a1/mono.m3u8`)
+  }
+
+  public async getMediaStreamMetadata(stream_id: number): Promise<Wasd.MediaStreamMetadata> {
+    return axios
+      .get(`https://cdn.wasd.tv/live/${stream_id}/index.m3u8`)
+      .then(({ data }) => {
+        const parse = {
+          bandwidth: data
+            .match(/(,BANDWIDTH=[0-9]*)/gm)
+            ?.at(0)
+            ?.replace(',BANDWIDTH=', ''),
+          average_bandwidth: data
+            .match(/(,AVERAGE-BANDWIDTH=[0-9]*)/gm)
+            .at(0)
+            ?.replace(',AVERAGE-BANDWIDTH=', ''),
+          codecs: data
+            .match(/(,CODECS=".*")/gm)
+            ?.at(0)
+            ?.replace(',CODECS="', '')
+            .replace('"', ''),
+          resolution: data
+            .match(/(,RESOLUTION=[0-9]*x[0-9]*)/gm)
+            ?.at(0)
+            ?.replace(',RESOLUTION=', ''),
+          closed_captions: data
+            .match(/(,CLOSED-CAPTIONS=[A-Z]*)/gm)
+            ?.at(0)
+            ?.replace(',CLOSED-CAPTIONS=', ''),
+          frame_rate: data
+            .match(/(,FRAME-RATE=[0-9]*\.[0-9]*)/gm)
+            ?.at(0)
+            ?.replace(',FRAME-RATE=', ''),
+          source_url: data.match(/(https:\/\/.*m3u8)/gm)?.at(0),
+        }
+
+        return {
+          bandwidth: parse.bandwidth ? Number(parse.bandwidth) : undefined,
+          average_bandwidth: parse.average_bandwidth ? Number(parse.average_bandwidth) : undefined,
+          codecs: parse.codecs,
+          resolution: parse.resolution,
+          closed_captions: parse.closed_captions,
+          frame_rate: parse.frame_rate ? Number(parse.frame_rate) : undefined,
+          source_url: parse.source_url,
+        }
+      })
+      .catch((err) => {
+        this.errorHandler(err)
+        return {
+          bandwidth: undefined,
+          average_bandwidth: undefined,
+          codecs: undefined,
+          resolution: undefined,
+          closed_captions: undefined,
+          frame_rate: undefined,
+          source_url: undefined,
+        }
+      })
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private errorHandler(err: any) {
     if (err instanceof AxiosError) {
       if (err.response?.data?.error !== undefined) {
         throw new ApiError(JSON.stringify(err.response.data.error, null, 2))

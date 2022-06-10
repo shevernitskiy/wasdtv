@@ -96,6 +96,30 @@ wasd.on('message', (ctx) => {
 })
 ```
 
+### Capturing Stream
+
+Yes! You can capture stream (for example, into file)
+
+```ts
+import { WasdTv } from 'wasdtv'
+import fs from 'fs'
+
+const wasd = new WasdTv('YOUR_API_TOKEN')
+
+// Get stream metadata
+wasd.getMediaStreamMetadata(1328329).then((data) => {
+  console.log(data)
+})
+
+const media = wasd.getMediaStream(1328329)
+media.pipe(fs.createWriteStream('video.mp4'))
+
+// Capture 20s of stream and close connection
+setTimeout(() => {
+  media.end()
+}, 20 * 1000)
+```
+
 ## Warning
 
 Due to the fact that Wasd has almost no adequate api documentation, typing was done by reversing responses. For this reason types can be incorrect and incomplete.

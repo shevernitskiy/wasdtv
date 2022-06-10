@@ -462,14 +462,14 @@ export namespace Wasd {
     channel_alias: null
     channel_priority: number
     last_activity_date: Date
-    meta: MetaMediaContainer
+    meta: MediaContainerMeta
   }
 
-  export interface MetaMediaContainer {}
+  export interface MediaContainerMeta {}
 
   // TODO: parse all this
   export type MediaContainerOnlineStatus = 'PUBLIC'
-  export type MediaStatus = 'RUNNING'
+  export type MediaStatus = 'RUNNING' | 'STOPPED'
   export type MediaType = 'HLS'
   export type MediaContainerType = 'SINGLE'
   export type TagType = 'DEFAULT' | 'RECOMMENDATION' | 'WARNING'
@@ -502,6 +502,16 @@ export namespace Wasd {
     message: Wasd.ChatMessage
     subscribe: Wasd.ChatSubscribe
     sticker: Wasd.ChatSticker
+  }
+
+  export interface MediaStreamMetadata {
+    bandwidth?: number
+    average_bandwidth?: number
+    codecs?: string
+    resolution?: string
+    closed_captions?: string
+    frame_rate?: number
+    source_url?: string
   }
 
   export enum ChatPermission {

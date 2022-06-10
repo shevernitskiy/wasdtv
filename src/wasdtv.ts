@@ -1,4 +1,5 @@
 import EventEmitter from 'events'
+import { PassThrough } from 'stream'
 
 import RestClient from './clients/rest'
 import SocketClient from './clients/socketio'
@@ -129,12 +130,20 @@ export class WasdTv extends EventEmitter {
   }
 
   public async getMediaContainers(
-    media_container_status?: Wasd.MediaStatus,
-    media_container_type?: Wasd.MediaContainerType,
+    media_container_status: Wasd.MediaStatus = 'RUNNING',
+    media_container_type: Wasd.MediaContainerType = 'SINGLE',
     game_id?: number,
     limit = 20,
     offset = 0,
   ): Promise<Wasd.MediaContainerExtra[]> {
     return await this._rest.getMediaContainers(media_container_status, media_container_type, game_id, limit, offset)
+  }
+
+  public getMediaStream(stream_id: number): PassThrough {
+    return this._rest.getMediaStream(stream_id)
+  }
+
+  public async getMediaStreamMetadata(stream_id: number): Promise<Wasd.MediaStreamMetadata> {
+    return await this._rest.getMediaStreamMetadata(stream_id)
   }
 }
