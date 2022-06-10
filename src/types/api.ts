@@ -90,6 +90,22 @@ export namespace Wasd {
 
   export type ChatDisconnect = string
 
+  export interface ChatUserBan {
+    id: string
+    payload: UserBanPayload
+  }
+
+  export interface UserBanPayload {
+    stream_id: number
+    streamer_id: number
+    channel_id: number
+    user_id: number
+    user_login: string
+    keep_messages: boolean
+    reason: string
+    duration: number
+  }
+
   /* -------------------------------- Messages -------------------------------- */
 
   export type MessageType = 'MESSAGE' | 'EVENT' | 'STICKER' | 'GIFTS' | 'YADONAT' | 'SUBSCRIBE' | 'HIGHLIGHTED_MESSAGE'
@@ -519,6 +535,7 @@ export namespace Wasd {
     highlighted_message: Wasd.ChatHighlightedMessage
     subscribe: Wasd.ChatSubscribe
     sticker: Wasd.ChatSticker
+    user_ban: Wasd.ChatUserBan
   }
 
   export interface MediaStreamMetadata {
