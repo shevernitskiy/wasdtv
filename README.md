@@ -8,11 +8,14 @@
 
 <p align=center>
   <i>
-    This is client for wasd.tv api
+    REST & Chat client for wasd.tv
   </i>
 </p>
 
 <div align="center">
+
+[![downloads](https://img.shields.io/npm/dm/wasdtv)](https://www.npmjs.com/package/wasdtv)
+[![size](https://img.shields.io/npm/v/wasdtv)](https://www.npmjs.com/package/wasdtv)
 
 ⚠️⚠️⚠️ This is raw alpha version. Totally untested, without proper error handling ⚠️⚠️⚠️
 
