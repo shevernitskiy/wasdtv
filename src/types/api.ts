@@ -208,6 +208,11 @@ export namespace Wasd {
     tags: Tag[]
   }
 
+  export interface MediaContainerExtra extends MediaContainer {
+    media_container_user: MediaContainerUser
+    media_container_channel: MediaContainerChannel
+  }
+
   export interface GameBase {
     game_id: number
     game_name: string
@@ -242,10 +247,10 @@ export namespace Wasd {
 
   export interface StreamMedia {
     media_id: number
-    media_type: string
+    media_type: MediaType
     media_meta: MediaMeta
     media_duration: number
-    media_status: string
+    media_status: MediaStatus
   }
 
   export interface MediaMeta {
@@ -261,7 +266,7 @@ export namespace Wasd {
     tag_name: string
     tag_description: string
     tag_meta: null
-    tag_type: string
+    tag_type: TagType
     tag_media_containers_online_count: number
   }
 
@@ -436,6 +441,50 @@ export namespace Wasd {
     start: number
     preview: Image
     duration: number
+  }
+
+  export interface MediaContainerChannel {
+    created_at: Date
+    deleted_at: null
+    updated_at: Date
+    channel_id: number
+    channel_name: string
+    user_id: number
+    followers_count: number
+    channel_subscribers_count: number
+    channel_is_live: boolean
+    channel_description: string
+    channel_description_enabled: boolean
+    channel_donation_url: null | string
+    channel_image: Image
+    channel_status: ChannelStatus
+    channel_clips_count: number
+    channel_alias: null
+    channel_priority: number
+    last_activity_date: Date
+    meta: MetaMediaContainer
+  }
+
+  export interface MetaMediaContainer {}
+
+  // TODO: parse all this
+  export type MediaContainerOnlineStatus = 'PUBLIC'
+  export type MediaStatus = 'RUNNING'
+  export type MediaType = 'HLS'
+  export type MediaContainerType = 'SINGLE'
+  export type TagType = 'DEFAULT' | 'RECOMMENDATION' | 'WARNING'
+
+  export interface MediaContainerUser {
+    created_at: Date
+    deleted_at: Date | null
+    updated_at: Date
+    user_id: number
+    user_login: string
+    profile_description: string
+    profile_image: Image
+    profile_background: Image
+    channel_id: number
+    profile_is_live: boolean
   }
 
   /* -------------------------------- EventMap -------------------------------- */

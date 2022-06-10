@@ -200,6 +200,29 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  public async getMediaContainers(
+    media_container_status?: Wasd.MediaStatus,
+    media_container_type?: Wasd.MediaContainerType,
+    game_id?: number,
+    limit = 20,
+    offset = 0,
+  ): Promise<Wasd.MediaContainerExtra[]> {
+    return this._axios
+      .get(`v2/media-containers`, {
+        params: {
+          media_container_status: media_container_status,
+          media_container_type: media_container_type,
+          game_id: game_id,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
   private errorHandler(err: AxiosError) {
     if (err instanceof AxiosError) {
       if (err.response?.data?.error !== undefined) {

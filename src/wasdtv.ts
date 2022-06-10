@@ -127,4 +127,14 @@ export class WasdTv extends EventEmitter {
   public async getGames(limit = 20, offset = 0): Promise<Wasd.Game[]> {
     return await this._rest.getGames(limit, offset)
   }
+
+  public async getMediaContainers(
+    media_container_status?: Wasd.MediaStatus,
+    media_container_type?: Wasd.MediaContainerType,
+    game_id?: number,
+    limit = 20,
+    offset = 0,
+  ): Promise<Wasd.MediaContainerExtra[]> {
+    return await this._rest.getMediaContainers(media_container_status, media_container_type, game_id, limit, offset)
+  }
 }
