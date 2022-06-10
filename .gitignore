@@ -1,0 +1,7 @@
+node_modules
+lib
+coverage
+*.log
+test/playground.test.ts
+src/playground.ts
+
