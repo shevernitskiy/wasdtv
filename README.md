@@ -42,7 +42,7 @@ To use REST api you should make token in [account setting area](https://wasd.tv/
 Http requests to api endpoints
 
 ```ts
-import { WasdTv } from 'gismeteo'
+import { WasdTv } from 'wasdtv'
 
 const wasd = new WasdTv('YOUR_API_TOKEN')
 
@@ -61,7 +61,7 @@ run()
 Connecting to chat socket.io server
 
 ```ts
-import { WasdTv } from 'gismeteo'
+import { WasdTv } from 'wasdtv'
 
 const wasd = new WasdTv('YOUR_API_TOKEN')
 
