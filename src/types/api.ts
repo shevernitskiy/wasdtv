@@ -525,17 +525,17 @@ export namespace Wasd {
   export type EventMap = {
     connect: null
     connect_error: string
-    disconnect: Wasd.ChatDisconnect
-    joined: Wasd.ChatJoined
-    system_message: Wasd.ChatSystemMessage
-    event: Wasd.ChatEvent
-    giftsV1: Wasd.ChatGiftsV1
-    viewers: Wasd.ChatViewers
-    message: Wasd.ChatMessage
-    highlighted_message: Wasd.ChatHighlightedMessage
-    subscribe: Wasd.ChatSubscribe
-    sticker: Wasd.ChatSticker
-    user_ban: Wasd.ChatUserBan
+    disconnect: ChatDisconnect
+    joined: ChatJoined
+    system_message: ChatSystemMessage
+    event: ChatEvent
+    giftsV1: ChatGiftsV1
+    viewers: ChatViewers
+    message: ChatMessage
+    highlighted_message: ChatHighlightedMessage
+    subscribe: ChatSubscribe
+    sticker: ChatSticker
+    user_ban: ChatUserBan
   }
 
   export interface MediaStreamMetadata {
