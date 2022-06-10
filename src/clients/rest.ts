@@ -225,6 +225,15 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  public async getChannelLinks(channel_id: number): Promise<Wasd.ChannelLink[]> {
+    return this._axios
+      .get(`channels/${channel_id}/links`)
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
   public getMediaStream(user_id: number): PassThrough {
     return m3u8stream(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)
   }

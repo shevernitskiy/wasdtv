@@ -519,6 +519,19 @@ export namespace Wasd {
     profile_is_live: boolean
   }
 
+  export interface ChannelLink {
+    channel_link_id: number
+    channel_link_value: string
+    channel_id: number
+    channel_link_type: ChannelLinkType
+  }
+
+  export interface ChannelLinkType {
+    channel_link_type_id: number
+    channel_link_type: string
+    channel_link_type_icon: Image
+  }
+
   /* -------------------------------- EventMap -------------------------------- */
 
   //TODO: parse connect_error message
