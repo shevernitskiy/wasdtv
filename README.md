@@ -8,7 +8,7 @@
 
 <p align=center>
   <i>
-    This is client for wasd.tx api
+    This is client for wasd.tv api
   </i>
 </p>
 
