@@ -1,6 +1,6 @@
 {
   "name": "wasdtv",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "lib/wasdtv.js",
   "typings": "lib/wasdtv.d.ts",
   "module": "lib/wasdtv.esm.js",
