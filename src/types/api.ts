@@ -46,6 +46,22 @@ export namespace Wasd {
     id: string
   }
 
+  export interface ChatHighlightedMessage {
+    id: string
+    user_id: number
+    user_login: string
+    user_avatar: Image
+    channel_id: number
+    stream_id: number
+    message: string
+    is_follower: boolean
+    user_channel_role: Role
+    other_roles: Role[]
+    date_time: Date
+    price_amount: number
+    price_code: string
+  }
+
   export interface ChatSubscribe extends SubscribeMessage {}
 
   export interface ChatSticker extends Sticker {}
@@ -500,6 +516,7 @@ export namespace Wasd {
     giftsV1: Wasd.ChatGiftsV1
     viewers: Wasd.ChatViewers
     message: Wasd.ChatMessage
+    highlighted_message: Wasd.ChatHighlightedMessage
     subscribe: Wasd.ChatSubscribe
     sticker: Wasd.ChatSticker
   }
