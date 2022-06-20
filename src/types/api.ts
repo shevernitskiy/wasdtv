@@ -545,8 +545,11 @@ export namespace Wasd {
     accept_2fa: boolean
     user_email: string
     wallets: Wallet[]
-    user_features: string[]
+    user_features: UserFeature[]
   }
+
+  // TODO: parse this
+  export type UserFeature = 'ADS' | 'ANALYTICS' | 'CHANNEL_RAID' | 'SUBSCRIPTION_V2' | 'LIVE_CLOSED'
 
   export interface UserAvatar {}
 
@@ -589,6 +592,14 @@ export namespace Wasd {
   export interface Wallet {
     currency_code: string
     value: number
+  }
+
+  export interface Notification {
+    id: number
+    text: string
+    date: Date
+    link: null | string
+    link_description: null | string
   }
 
   /* -------------------------------- EventMap -------------------------------- */

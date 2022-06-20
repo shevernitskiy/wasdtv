@@ -147,6 +147,10 @@ export class WasdTv extends EventEmitter {
     return await this._rest.getCurrent()
   }
 
+  public async getNotifications(): Promise<Wasd.Notification[]> {
+    return await this._rest.getNotifications()
+  }
+
   public getMediaStream(user_id: number): PassThrough {
     return this._rest.getMediaStream(user_id)
   }
