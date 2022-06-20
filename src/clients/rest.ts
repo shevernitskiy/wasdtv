@@ -225,7 +225,7 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
-  public async getCurrent(): Promise<Wasd.User> {
+  public async getProfile(): Promise<Wasd.User> {
     return this._axios
       .get('v2/profiles/current')
       .then(({ data }) => {

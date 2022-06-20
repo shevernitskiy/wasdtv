@@ -143,8 +143,8 @@ export class WasdTv extends EventEmitter {
     return await this._rest.getChannelLinks(channel_id)
   }
 
-  public async getCurrent(): Promise<Wasd.User> {
-    return await this._rest.getCurrent()
+  public async getProfile(): Promise<Wasd.User> {
+    return await this._rest.getProfile()
   }
 
   public async getNotifications(): Promise<Wasd.Notification[]> {
