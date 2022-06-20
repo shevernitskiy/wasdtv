@@ -143,6 +143,10 @@ export class WasdTv extends EventEmitter {
     return await this._rest.getChannelLinks(channel_id)
   }
 
+  public async getCurrent(): Promise<Wasd.User> {
+    return await this._rest.getCurrent()
+  }
+
   public getMediaStream(user_id: number): PassThrough {
     return this._rest.getMediaStream(user_id)
   }

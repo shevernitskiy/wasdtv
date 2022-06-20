@@ -225,6 +225,15 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  public async getCurrent(): Promise<Wasd.User> {
+    return this._axios
+      .get('v2/profiles/current')
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
   public async getChannelLinks(channel_id: number): Promise<Wasd.ChannelLink[]> {
     return this._axios
       .get(`channels/${channel_id}/links`)

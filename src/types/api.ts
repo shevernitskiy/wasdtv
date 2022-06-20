@@ -532,6 +532,65 @@ export namespace Wasd {
     channel_link_type_icon: Image
   }
 
+  export interface User {
+    user_id: number
+    user_login: string
+    user_profile: UserProfile
+    user_xp: UserXP
+    user_avatar: UserAvatar
+    new_user_agreement: boolean
+    user_agreement: boolean
+    user_role: string
+    enabled_2fa: boolean
+    accept_2fa: boolean
+    user_email: string
+    wallets: Wallet[]
+    user_features: string[]
+  }
+
+  export interface UserAvatar {}
+
+  export interface UserProfile {
+    created_at: Date
+    deleted_at: Date | null
+    updated_at: Date
+    user_id: number
+    user_login: string
+    profile_description: string
+    profile_image: Image
+    profile_background: Image
+    channel_id: number
+    profile_is_live: boolean
+  }
+
+  export interface UserXP {
+    user_id: number
+    profile_xp_current: number
+    profile_xp_total: number
+    profile_level: number
+    profile_xp_for_next_level: number
+    profile_xp_level_start: number
+    profile_level_info: ProfileLevelInfo
+  }
+
+  export interface ProfileLevelInfo {
+    level_id: number
+    level_number: number
+    level_type: string
+    level_min_border: number
+    level_max_border: number
+    level_name: string
+    level_description: string
+    level_image: Image
+    previous_level_id: number
+    next_level_id: number
+  }
+
+  export interface Wallet {
+    currency_code: string
+    value: number
+  }
+
   /* -------------------------------- EventMap -------------------------------- */
 
   //TODO: parse connect_error message
