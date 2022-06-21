@@ -106,10 +106,15 @@ export namespace Wasd {
     duration: number
   }
 
-  /* -------------------------------- Messages -------------------------------- */
-
   export type MessageType = 'MESSAGE' | 'EVENT' | 'STICKER' | 'GIFTS' | 'YADONAT' | 'SUBSCRIBE' | 'HIGHLIGHTED_MESSAGE'
-  export type Role = 'CHANNEL_OWNER' | 'CHANNEL_FOLLOWER' | 'CHANNEL_USER' | 'CHANNEL_MODERATOR' | 'CHANEL_SUBSCRIBER'
+  export type Role =
+    | 'CHANNEL_OWNER'
+    | 'CHANNEL_FOLLOWER'
+    | 'CHANNEL_USER'
+    | 'CHANNEL_MODERATOR'
+    | 'CHANEL_SUBSCRIBER'
+    | 'PROMO_CODE_WINNER'
+    | 'WASD_ADMIN'
   export type InfoType = Message | StickerMessage | HighlightedMessage | SubscribeMessage
 
   // TODO: EventMessage, GiftsMessage, YadonatMessage
@@ -165,8 +170,6 @@ export namespace Wasd {
     sticker_pack_id: number
     sticker_status: string | null
   }
-
-  /* ------------------------------ Channel Info ------------------------------ */
 
   export interface ChannelInfo {
     channel: Channel
@@ -601,8 +604,6 @@ export namespace Wasd {
     link: null | string
     link_description: null | string
   }
-
-  /* -------------------------------- EventMap -------------------------------- */
 
   //TODO: parse connect_error message
   export type EventMap = {
