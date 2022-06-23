@@ -38,6 +38,14 @@ export class WasdTv extends EventEmitter {
     this._socket.leave(stream_id)
   }
 
+  public sendMessage(stream_id: number, message: string, channel_id = 1, streamer_id = 1): void {
+    return this._socket.sendMessage(stream_id, message, channel_id, streamer_id)
+  }
+
+  public sendSticker(stream_id: number, sticker_id: number, channel_id = 1, streamer_id = 1): void {
+    return this._socket.sendSticker(stream_id, sticker_id, channel_id, streamer_id)
+  }
+
   private async connectGuard(): Promise<void> {
     if (this._socket === undefined) {
       this._jwt = await this._rest.getJWT()
@@ -61,8 +69,8 @@ export class WasdTv extends EventEmitter {
     return await this._rest.getJWT()
   }
 
-  public async getChannelInfo(streamer_alias: string): Promise<Wasd.ChannelInfo> {
-    return await this._rest.getChannelInfo(streamer_alias)
+  public async getChannelInfo(channel_name: string): Promise<Wasd.ChannelInfo> {
+    return await this._rest.getChannelInfo(channel_name)
   }
 
   public async getStreamChatMessages(stream_id: number, limit = 500, offset = 0): Promise<Wasd.RestMessage<Wasd.Message>[]> {

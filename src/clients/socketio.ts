@@ -68,6 +68,46 @@ export default class SocketClient extends EventEmitter {
     }
   }
 
+  public sendMessage(stream_id: number, message: string, channel_id: number, streamer_id: number): void {
+    if (this.socketio?.connected) {
+      this.socketio.emit('message', {
+        channelId: channel_id,
+        hash: this.messageHash(),
+        jwt: this.jwt,
+        message: message,
+        streamId: stream_id,
+        streamerId: streamer_id,
+      })
+    } else {
+      throw new SocketError('Socket is not connected at this moment. Use this method only after "joined" event.')
+    }
+  }
+
+  public sendSticker(stream_id: number, sticker_id: number, channel_id: number, streamer_id: number): void {
+    if (this.socketio?.connected) {
+      this.socketio.emit('sticker', {
+        channel_id: channel_id,
+        hash: this.messageHash(),
+        sticker_id: sticker_id,
+        stream_id: stream_id,
+        streamer_id: streamer_id,
+      })
+    } else {
+      throw new SocketError('Socket is not connected at this moment. Use this method only after "joined" event.')
+    }
+  }
+
+  private messageHash(length = 25): string {
+    let result = ''
+    const characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
+    const charactersLength = characters.length
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    }
+
+    return result
+  }
+
   private listen(cb?: CallableFunction): void {
     this.socketio.on('connect', () => {
       this.ping()

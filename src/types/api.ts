@@ -5,8 +5,21 @@ export namespace Wasd {
 
   /* ------------------------------ Socket Events ----------------------------- */
 
-  // TODO: parse action types
-  export type ChatAction = 'WRITE_TO_CHAT' | 'WRITE_TO_FOLLOWERS_CHAT'
+  export type ChatAction =
+    | 'WRITE_TO_CHAT'
+    | 'WRITE_TO_FOLLOWERS_CHAT'
+    | 'WRITE_TO_SUBSCRIPTION_CHAT'
+    | 'WRITE_NO_DELAY'
+    | 'CHANNEL_USER'
+    | 'CHAT_START_VOTING'
+    | 'CHAT_MAKE_VOTING_CHOICE'
+    | 'ASSIGN_MODERATOR'
+    | 'BAN_USER'
+    | 'DELETE_MESSAGE'
+    | 'MUTE_USER'
+    | 'REMOVE_MESSAGES'
+    | 'VIEW_BANNED_USERS'
+
   // TODO: parse event types
   export type ChatEventType = 'NEW_FOLLOWER'
 
@@ -113,8 +126,15 @@ export namespace Wasd {
     | 'CHANNEL_USER'
     | 'CHANNEL_MODERATOR'
     | 'CHANEL_SUBSCRIBER'
+    | 'CHANNEL_BANNED'
+    | 'CHANNEL_MUTE'
+    | 'CHANNEL_HIDE'
     | 'PROMO_CODE_WINNER'
+    | 'PROMO_CODE_CANDIDATE'
     | 'WASD_ADMIN'
+    | 'WASD_TEAM'
+    | 'WASD_PARTNER'
+    | 'ANON'
   export type InfoType = Message | StickerMessage | HighlightedMessage | SubscribeMessage
 
   // TODO: EventMessage, GiftsMessage, YadonatMessage
@@ -504,7 +524,7 @@ export namespace Wasd {
 
   // TODO: parse all this
   export type MediaContainerOnlineStatus = 'PUBLIC'
-  export type MediaStatus = 'RUNNING' | 'STOPPED'
+  export type MediaStatus = 'RUNNING' | 'STOPPED' | 'IDLE'
   export type MediaType = 'HLS'
   export type MediaContainerType = 'SINGLE'
   export type TagType = 'DEFAULT' | 'RECOMMENDATION' | 'WARNING'

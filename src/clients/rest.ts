@@ -26,11 +26,11 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
-  public async getChannelInfo(streamer_alias: string): Promise<Wasd.ChannelInfo> {
+  public async getChannelInfo(channel_name: string): Promise<Wasd.ChannelInfo> {
     return this._axios
       .get('v2/broadcasts/public', {
         params: {
-          channel_name: streamer_alias,
+          channel_name: channel_name,
         },
       })
       .then(({ data }) => {
@@ -252,6 +252,7 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  // TODO: add options to method
   public getMediaStream(user_id: number): PassThrough {
     return m3u8stream(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)
   }
@@ -319,6 +320,7 @@ export default class RestClient {
       if (err.response?.data?.error !== undefined) {
         throw new ApiError(JSON.stringify(err.response.data.error, null, 2))
       } else {
+        console.log(err)
         throw new HttpError(err.message)
       }
     }
