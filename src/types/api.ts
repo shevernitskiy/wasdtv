@@ -639,7 +639,51 @@ export namespace Wasd {
     rows: T[]
   }
 
-  //TODO: parse connect_error message
+  export interface StreamPushUrl {
+    url: string
+    key: string
+    full_url: string
+    parameters: StreamPushParameter[]
+  }
+
+  export interface StreamPushParameter {
+    name: string
+    code: string
+    type: string
+    desc: string
+  }
+
+  export interface StreamClosedViewUrl {
+    view_url: string
+  }
+
+  export interface BroadcastLimits {
+    live: BroadcastSetup
+    abr: BroadcastSetup
+  }
+
+  export interface BroadcastSetup {
+    fps: number
+    bitrate: number
+    resolution: Resolution
+  }
+
+  export interface Resolution {
+    width: number
+    height: number
+  }
+
+  // TODO: investigate settings values
+  export interface Setting {
+    setting_key: SettingKey
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setting_value: any
+  }
+
+  // TODO: parse this
+  export type SettingKey = 'STREAM_NAME' | 'STREAM_GAME' | 'IS_MATURE_CONTENT' | 'STREAM_AUTOPUBLISH_ENABLED'
+
+  // TODO: parse connect_error message
   export type EventMap = {
     connect: null
     connect_error: string

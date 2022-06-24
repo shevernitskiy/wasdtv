@@ -160,11 +160,11 @@ export class WasdTv extends EventEmitter {
   }
 
   public async searchGames(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.Game>> {
-    return this._rest.searchGames(search_phrase, limit, offset)
+    return await this._rest.searchGames(search_phrase, limit, offset)
   }
 
   public async searchProfile(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.UserProfile>> {
-    return this._rest.searchProfile(search_phrase, limit, offset)
+    return await this._rest.searchProfile(search_phrase, limit, offset)
   }
 
   public async searchChannel(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.Channel>> {
@@ -178,6 +178,27 @@ export class WasdTv extends EventEmitter {
     offset = 0,
   ): Promise<Wasd.SearchResult<Wasd.MediaContainerExtra>> {
     return this._rest.searchMediaContainer(media_container_name, media_container_status, limit, offset)
+  }
+
+  public async getTags(type?: Wasd.TagType, limit = 30, offset = 0): Promise<Wasd.Tag[]> {
+    return await this._rest.getTags(type, limit, offset)
+  }
+
+  public async getStreamPushUrl(): Promise<Wasd.StreamPushUrl> {
+    return await this._rest.getStreamPushUrl()
+  }
+
+  public async getStreamClosedViewUrl(): Promise<Wasd.StreamClosedViewUrl> {
+    return await this._rest.getStreamClosedViewUrl()
+  }
+
+  public async getBroadcastLimits(): Promise<Wasd.BroadcastLimits> {
+    return await this._rest.getBroadcastLimits()
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public async setSetting(setting_key: Wasd.SettingKey, setting_value: any): Promise<Wasd.Setting[]> {
+    return await this._rest.setSetting(setting_key, setting_value)
   }
 
   public getMediaStream(user_id: number): PassThrough {

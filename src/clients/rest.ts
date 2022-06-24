@@ -318,6 +318,66 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  public async getTags(type?: Wasd.TagType, limit = 30, offset = 0): Promise<Wasd.Tag[]> {
+    return this._axios
+      .get('v2/tags', {
+        params: {
+          type: type,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
+  public async getStreamPushUrl(): Promise<Wasd.StreamPushUrl> {
+    return this._axios
+      .get('auth/users/current/stream-push-url')
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
+  public async getStreamClosedViewUrl(): Promise<Wasd.StreamClosedViewUrl> {
+    return this._axios
+      .get('v2/profiles/current/broadcasts/closed-view-url')
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
+  public async getBroadcastLimits(): Promise<Wasd.BroadcastLimits> {
+    return this._axios
+      .get('v2/broadcast-limits')
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
+  // TODO: investigate possible search_value types
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public async setSetting(setting_key: Wasd.SettingKey, setting_value: any): Promise<Wasd.Setting[]> {
+    return this._axios
+      .patch('profiles/current/settings', {
+        new_settings: [
+          {
+            setting_key: setting_key,
+            setting_value: setting_value,
+          },
+        ],
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
   // TODO: add options to method
   public getMediaStream(user_id: number): PassThrough {
     return m3u8stream(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)
