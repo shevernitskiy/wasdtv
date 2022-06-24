@@ -159,6 +159,27 @@ export class WasdTv extends EventEmitter {
     return await this._rest.getNotifications()
   }
 
+  public async searchGames(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.Game>> {
+    return this._rest.searchGames(search_phrase, limit, offset)
+  }
+
+  public async searchProfile(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.UserProfile>> {
+    return this._rest.searchProfile(search_phrase, limit, offset)
+  }
+
+  public async searchChannel(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.Channel>> {
+    return this._rest.searchChannel(search_phrase, limit, offset)
+  }
+
+  public async searchMediaContainer(
+    media_container_name?: string,
+    media_container_status?: Wasd.MediaStatus,
+    limit = 20,
+    offset = 0,
+  ): Promise<Wasd.SearchResult<Wasd.MediaContainerExtra>> {
+    return this._rest.searchMediaContainer(media_container_name, media_container_status, limit, offset)
+  }
+
   public getMediaStream(user_id: number): PassThrough {
     return this._rest.getMediaStream(user_id)
   }

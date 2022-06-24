@@ -208,7 +208,7 @@ export namespace Wasd {
     channel_is_live: boolean
     channel_description: string
     channel_description_enabled: boolean
-    channel_donation_url: string
+    channel_donation_url: string | null
     channel_image: Image
     channel_status: string
     channel_subscription_seller: boolean
@@ -219,8 +219,11 @@ export namespace Wasd {
     meta: ChannelMeta
     channel_owner: ChannelOwner
     notification: boolean
+    is_paid_subscription_seller?: boolean
     is_user_follower: boolean
-    is_partner: boolean
+    is_partner?: boolean
+    raid_info: null
+    background?: Image
   }
 
   export interface Image {
@@ -253,13 +256,13 @@ export namespace Wasd {
     media_container_type: string
     media_container_status: string
     media_container_online_status: string
+    media_container_streams: MediaContainerStream[]
     user_id: number
     channel_id: number
     created_at: Date
     is_mature_content: boolean
     published_at: Date
     game: GameBase
-    media_container_streams: MediaContainerStream[]
     tags: Tag[]
   }
 
@@ -281,7 +284,6 @@ export namespace Wasd {
     deleted_at: null
     game_description: null | string
     game_image: Image
-    viewers_count: number
     game_name_ru: null | string
     game_name_short: null
     game_name_short_ru: null
@@ -289,7 +291,8 @@ export namespace Wasd {
     game_asset_name: string
     stream_count: number
     videos_count: number
-    channels_count: number
+    viewers_count: number
+    channels_count?: number
   }
 
   export interface MediaContainerStream {
@@ -580,12 +583,18 @@ export namespace Wasd {
     created_at: Date
     deleted_at: Date | null
     updated_at: Date
+    channel_id: number
     user_id: number
     user_login: string
     profile_description: string
+    profile_description_enabled?: boolean
+    profile_first_name?: null
+    profile_last_name?: null
+    profile_stream_preview_image_url?: null
+    profile_stream_push_url?: null
+    profile_stream_view_url?: null
     profile_image: Image
     profile_background: Image
-    channel_id: number
     profile_is_live: boolean
   }
 
@@ -623,6 +632,11 @@ export namespace Wasd {
     date: Date
     link: null | string
     link_description: null | string
+  }
+
+  export interface SearchResult<T> {
+    count: number
+    rows: T[]
   }
 
   //TODO: parse connect_error message

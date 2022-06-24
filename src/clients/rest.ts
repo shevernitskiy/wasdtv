@@ -252,6 +252,72 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  public async searchGames(search_phrase: string, limit: number, offset: number): Promise<Wasd.SearchResult<Wasd.Game>> {
+    return this._axios
+      .get('search/games', {
+        params: {
+          search_phrase: search_phrase,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
+  public async searchProfile(search_phrase: string, limit: number, offset: number): Promise<Wasd.SearchResult<Wasd.UserProfile>> {
+    return this._axios
+      .get('search/profiles', {
+        params: {
+          search_phrase: search_phrase,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
+  public async searchChannel(search_phrase: string, limit: number, offset: number): Promise<Wasd.SearchResult<Wasd.Channel>> {
+    return this._axios
+      .get('search/channels', {
+        params: {
+          search_phrase: search_phrase,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
+  public async searchMediaContainer(
+    media_container_name?: string,
+    media_container_status?: Wasd.MediaStatus,
+    limit = 20,
+    offset = 0,
+  ): Promise<Wasd.SearchResult<Wasd.MediaContainerExtra>> {
+    return this._axios
+      .get('v2/search/media-containers', {
+        params: {
+          media_container_name: media_container_name,
+          media_container_status: media_container_status,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
   // TODO: add options to method
   public getMediaStream(user_id: number): PassThrough {
     return m3u8stream(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)
