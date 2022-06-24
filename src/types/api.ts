@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Wasd {
@@ -683,11 +684,13 @@ export namespace Wasd {
   // TODO: parse this
   export type SettingKey = 'STREAM_NAME' | 'STREAM_GAME' | 'IS_MATURE_CONTENT' | 'STREAM_AUTOPUBLISH_ENABLED'
 
-  // TODO: parse connect_error message
+  // TODO: parse connect_error and all any types
   export type EventMap = {
     connect: null
     connect_error: string
+    reconnect: any
     disconnect: ChatDisconnect
+    join: any
     joined: ChatJoined
     system_message: ChatSystemMessage
     event: ChatEvent
@@ -698,6 +701,20 @@ export namespace Wasd {
     subscribe: ChatSubscribe
     sticker: ChatSticker
     user_ban: ChatUserBan
+    new_follower: any
+    upgrade: any
+    right_upgrade: any
+    history: any
+    history_events: any
+    voting_start: any
+    voting_started: any
+    voting_make_choice: any
+    voting_info: any
+    voting_finished: any
+    voting_choice_added: any
+    notification: any
+    settings_update: any
+    messageDeleted: any
   }
 
   export interface MediaStreamMetadata {
