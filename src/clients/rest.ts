@@ -188,6 +188,21 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  public async getClips(channel_id: number, limit: number, offset: number): Promise<Wasd.Clip[]> {
+    return this._axios
+      .get('v2/clips', {
+        params: {
+          clip_channel_id: channel_id,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
   public async getGames(limit = 20, offset = 0): Promise<Wasd.Game[]> {
     return this._axios
       .get('games', {
@@ -387,6 +402,15 @@ export default class RestClient {
           offset: offset,
         },
       })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
+  public async getSchedule(user_id: number): Promise<Wasd.Schedule[]> {
+    return this._axios
+      .get(`schedules/weekly/${user_id}`)
       .then(({ data }) => {
         return data.result
       })

@@ -734,6 +734,13 @@ export namespace Wasd {
     profile_is_live: boolean
   }
 
+  export interface Schedule {
+    channel_id: number
+    day_of_week: string
+    time_start: string
+    is_active: boolean
+  }
+
   // TODO: parse connect_error and all any types
   export type EventMap = {
     connect: null

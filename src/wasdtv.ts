@@ -133,6 +133,10 @@ export class WasdTv extends EventEmitter {
     return this._rest.getPopularClips()
   }
 
+  public async getClips(channel_id: number, limit = 20, offset = 0): Promise<Wasd.Clip[]> {
+    return this._rest.getClips(channel_id, limit, offset)
+  }
+
   public async getGames(limit = 20, offset = 0): Promise<Wasd.Game[]> {
     return this._rest.getGames(limit, offset)
   }
