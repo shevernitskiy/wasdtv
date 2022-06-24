@@ -378,6 +378,21 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  public async getPosts(user_id: number, limit: number, offset: number): Promise<Wasd.Post[]> {
+    return this._axios
+      .get('v2/posts', {
+        params: {
+          user_id: user_id,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
   // TODO: add options to method
   public getMediaStream(user_id: number): PassThrough {
     return m3u8stream(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)

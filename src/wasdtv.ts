@@ -201,6 +201,10 @@ export class WasdTv extends EventEmitter {
     return this._rest.setSetting(setting_key, setting_value)
   }
 
+  public async getPosts(user_id: number, limit = 20, offset = 0): Promise<Wasd.Post[]> {
+    return this._rest.getPosts(user_id, limit, offset)
+  }
+
   public getMediaStream(user_id: number): PassThrough {
     return this._rest.getMediaStream(user_id)
   }

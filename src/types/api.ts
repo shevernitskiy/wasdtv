@@ -684,6 +684,56 @@ export namespace Wasd {
   // TODO: parse this
   export type SettingKey = 'STREAM_NAME' | 'STREAM_GAME' | 'IS_MATURE_CONTENT' | 'STREAM_AUTOPUBLISH_ENABLED'
 
+  export interface Post {
+    post_id: number
+    user_id: number
+    title: string
+    text: string
+    image: Image
+    created_at: Date
+    updated_at: Date
+    preview_comments: PreviewComment[]
+    comments_count: number
+    likes_count: number
+    is_liked: boolean
+    is_mature_content: boolean
+    user: FeatureUser
+  }
+
+  export interface PreviewComment {
+    created_at: Date
+    updated_at: Date
+    comment_id: number
+    commented_entity_id: number | null
+    text: string | null
+    user_id: number | null
+    user: PreviewCommentUser | null
+    deleted_by: null | string
+    deleted_at?: Date
+    comment_type?: null
+  }
+
+  export interface PreviewCommentUser {
+    created_at: Date
+    updated_at: Date
+    user_id: number
+    user_login: string
+    profile_description: string
+    profile_image: Image
+    profile_background: Image
+    channel_id: number
+    profile_is_live: boolean
+  }
+
+  export interface FeatureUser {
+    user_id: number
+    user_login: string
+    profile_image: Image
+    profile_background: Image
+    channel_id: number
+    profile_is_live: boolean
+  }
+
   // TODO: parse connect_error and all any types
   export type EventMap = {
     connect: null
