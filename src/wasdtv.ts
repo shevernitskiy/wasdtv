@@ -66,23 +66,23 @@ export class WasdTv extends EventEmitter {
   }
 
   public async getJWT(): Promise<Wasd.JWT> {
-    return await this._rest.getJWT()
+    return this._rest.getJWT()
   }
 
   public async getChannelInfo(channel_name: string): Promise<Wasd.ChannelInfo> {
-    return await this._rest.getChannelInfo(channel_name)
+    return this._rest.getChannelInfo(channel_name)
   }
 
   public async getStreamChatMessages(stream_id: number, limit = 500, offset = 0): Promise<Wasd.RestMessage<Wasd.Message>[]> {
-    return await this._rest.getStreamChatMessages<Wasd.Message>(stream_id, 'MESSAGE', limit, offset)
+    return this._rest.getStreamChatMessages<Wasd.Message>(stream_id, 'MESSAGE', limit, offset)
   }
 
   public async getStreamChatStickers(stream_id: number, limit = 500, offset = 0): Promise<Wasd.RestMessage<Wasd.StickerMessage>[]> {
-    return await this._rest.getStreamChatMessages<Wasd.StickerMessage>(stream_id, 'STICKER', limit, offset)
+    return this._rest.getStreamChatMessages<Wasd.StickerMessage>(stream_id, 'STICKER', limit, offset)
   }
 
   public async getStreamChatSubscribers(stream_id: number, limit = 500, offset = 0): Promise<Wasd.RestMessage<Wasd.SubscribeMessage>[]> {
-    return await this._rest.getStreamChatMessages<Wasd.SubscribeMessage>(stream_id, 'SUBSCRIBE', limit, offset)
+    return this._rest.getStreamChatMessages<Wasd.SubscribeMessage>(stream_id, 'SUBSCRIBE', limit, offset)
   }
 
   public async getStreamChatHighlightedMessage(
@@ -90,51 +90,51 @@ export class WasdTv extends EventEmitter {
     limit = 500,
     offset = 0,
   ): Promise<Wasd.RestMessage<Wasd.HighlightedMessage>[]> {
-    return await this._rest.getStreamChatMessages<Wasd.HighlightedMessage>(stream_id, 'HIGHLIGHTED_MESSAGE', limit, offset)
+    return this._rest.getStreamChatMessages<Wasd.HighlightedMessage>(stream_id, 'HIGHLIGHTED_MESSAGE', limit, offset)
   }
 
   public async addModerator(channel_id: number, user_id: number): Promise<boolean> {
-    return await this._rest.addModerator(channel_id, user_id)
+    return this._rest.addModerator(channel_id, user_id)
   }
 
   public async deleteModerator(channel_id: number, user_id: number): Promise<boolean> {
-    return await this._rest.deleteModerator(channel_id, user_id)
+    return this._rest.deleteModerator(channel_id, user_id)
   }
 
   public async listModerator(streamer_id: number): Promise<Wasd.Moderator[]> {
-    return await this._rest.listModerator(streamer_id)
+    return this._rest.listModerator(streamer_id)
   }
 
   public async banUser(channel_id: number, user_id: number, stream_id: number, keep_messages = true, duration = 10): Promise<boolean> {
-    return await this._rest.banUser(channel_id, user_id, stream_id, keep_messages, duration)
+    return this._rest.banUser(channel_id, user_id, stream_id, keep_messages, duration)
   }
 
   public async unbanUser(channel_id: number, user_id: number): Promise<boolean> {
-    return await this._rest.unbanUser(channel_id, user_id)
+    return this._rest.unbanUser(channel_id, user_id)
   }
 
   public async listBanned(streamer_id: number): Promise<Wasd.BannedUser[]> {
-    return await this._rest.listBanned(streamer_id)
+    return this._rest.listBanned(streamer_id)
   }
 
   public async getGifts(media_container_id: number): Promise<Wasd.Gift[]> {
-    return await this._rest.getGifts(media_container_id)
+    return this._rest.getGifts(media_container_id)
   }
 
   public async productsToSell(user_id: number): Promise<Wasd.Product[]> {
-    return await this._rest.productsToSell(user_id)
+    return this._rest.productsToSell(user_id)
   }
 
   public async getWebCustomBlocks(channel_id: number): Promise<Wasd.WebCustomBlock[]> {
-    return await this._rest.getWebCustomBlocks(channel_id)
+    return this._rest.getWebCustomBlocks(channel_id)
   }
 
   public async getPopularClips(): Promise<Wasd.Clip[]> {
-    return await this._rest.getPopularClips()
+    return this._rest.getPopularClips()
   }
 
   public async getGames(limit = 20, offset = 0): Promise<Wasd.Game[]> {
-    return await this._rest.getGames(limit, offset)
+    return this._rest.getGames(limit, offset)
   }
 
   public async getMediaContainers(
@@ -144,27 +144,27 @@ export class WasdTv extends EventEmitter {
     limit = 20,
     offset = 0,
   ): Promise<Wasd.MediaContainerExtra[]> {
-    return await this._rest.getMediaContainers(media_container_status, media_container_type, game_id, limit, offset)
+    return this._rest.getMediaContainers(media_container_status, media_container_type, game_id, limit, offset)
   }
 
   public async getChannelLinks(channel_id: number): Promise<Wasd.ChannelLink[]> {
-    return await this._rest.getChannelLinks(channel_id)
+    return this._rest.getChannelLinks(channel_id)
   }
 
   public async getProfile(): Promise<Wasd.User> {
-    return await this._rest.getProfile()
+    return this._rest.getProfile()
   }
 
   public async getNotifications(): Promise<Wasd.Notification[]> {
-    return await this._rest.getNotifications()
+    return this._rest.getNotifications()
   }
 
   public async searchGames(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.Game>> {
-    return await this._rest.searchGames(search_phrase, limit, offset)
+    return this._rest.searchGames(search_phrase, limit, offset)
   }
 
   public async searchProfile(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.UserProfile>> {
-    return await this._rest.searchProfile(search_phrase, limit, offset)
+    return this._rest.searchProfile(search_phrase, limit, offset)
   }
 
   public async searchChannel(search_phrase: string, limit = 20, offset = 0): Promise<Wasd.SearchResult<Wasd.Channel>> {
@@ -181,24 +181,24 @@ export class WasdTv extends EventEmitter {
   }
 
   public async getTags(type?: Wasd.TagType, limit = 30, offset = 0): Promise<Wasd.Tag[]> {
-    return await this._rest.getTags(type, limit, offset)
+    return this._rest.getTags(type, limit, offset)
   }
 
   public async getStreamPushUrl(): Promise<Wasd.StreamPushUrl> {
-    return await this._rest.getStreamPushUrl()
+    return this._rest.getStreamPushUrl()
   }
 
   public async getStreamClosedViewUrl(): Promise<Wasd.StreamClosedViewUrl> {
-    return await this._rest.getStreamClosedViewUrl()
+    return this._rest.getStreamClosedViewUrl()
   }
 
   public async getBroadcastLimits(): Promise<Wasd.BroadcastLimits> {
-    return await this._rest.getBroadcastLimits()
+    return this._rest.getBroadcastLimits()
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async setSetting(setting_key: Wasd.SettingKey, setting_value: any): Promise<Wasd.Setting[]> {
-    return await this._rest.setSetting(setting_key, setting_value)
+    return this._rest.setSetting(setting_key, setting_value)
   }
 
   public getMediaStream(user_id: number): PassThrough {
@@ -206,6 +206,6 @@ export class WasdTv extends EventEmitter {
   }
 
   public async getMediaStreamMetadata(user_id: number): Promise<Wasd.MediaStreamMetadata> {
-    return await this._rest.getMediaStreamMetadata(user_id)
+    return this._rest.getMediaStreamMetadata(user_id)
   }
 }
