@@ -8,7 +8,7 @@
 
 <p align=center>
   <i>
-    REST & Chat client for wasd.tv
+ - REST & Chat client for wasd.tv
   </i>
 </p>
 
@@ -56,9 +56,43 @@ const run = async () => {
 run()
 ```
 
+Available methods:
+
+- getChannelInfo
+- getStreamChatMessages
+- getStreamChatStickers
+- getStreamChatSubscribers
+- getStreamChatHighlightedMessage
+- addModerator
+- deleteModerator
+- listModerator
+- banUser
+- unbanUser
+- listBanned
+- getGifts
+- productsToSell
+- getWebCustomBlocks
+- getPopularClips
+- getClips
+- getGames
+- getMediaContainers
+- getChannelLinks
+- getProfile
+- getNotifications
+- searchGames
+- searchProfile
+- searchChannel
+- searchMediaContainer
+- getTags
+- getStreamPushUrl
+- getStreamClosedViewUrl
+- getBroadcastLimits
+- setSetting
+- getPosts
+
 ### Chat
 
-Connecting to chat socket.io server
+Interacting with chat pretty easy.
 
 ```ts
 import { WasdTv } from 'wasdtv'
@@ -67,34 +101,56 @@ const wasd = new WasdTv('YOUR_API_TOKEN')
 
 wasd.joinToChat(1016842, 68523)
 
-wasd.on('event', (ctx) => {
-  console.log('event', ctx)
-})
-
-wasd.on('subscribe', (ctx) => {
-  console.log('subscribe', ctx)
-})
-
-wasd.on('connect', () => {
-  console.log('connect')
-})
-
-wasd.on('viewers', (ctx) => {
-  console.log('viewers', ctx)
-})
-
-wasd.on('system_message', (ctx) => {
-  console.log('system_message', ctx)
-})
-
-wasd.on('giftsV1', (ctx) => {
-  console.log('giftsV1', ctx)
+wasd.on('joined', (ctx) => {
+  wasd.sendMessage(1016842, 'hey!')
+  wasd.sendSticker(1016842, 20)
 })
 
 wasd.on('message', (ctx) => {
   console.log('message', ctx)
 })
 ```
+
+Supported chat events:
+
+- connect
+- connect_error
+- reconnect
+- disconnect
+- join
+- joined
+- system_message
+- event
+- giftsV1
+- viewers
+- message
+- highlighted_message
+- subscribe
+- sticker
+- user_ban
+
+These event are in web sources, but i never seen it (not typed):
+
+- new_follower
+- upgrade
+- right_upgrade
+- history
+- history_events
+- voting_start
+- voting_started
+- voting_make_choice
+- voting_info
+- voting_finished
+- voting_choice_added
+- notification
+- settings_update
+- messageDeleted
+
+Methods to interact:
+
+- joinToChat
+- sendMessage
+- sendSticker
 
 ### Capturing Stream
 
