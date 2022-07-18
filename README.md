@@ -128,6 +128,8 @@ Supported chat events:
 - subscribe
 - sticker
 - user_ban
+- messageDeleted
+- paidMessage
 
 These event are in web sources, but i never seen it (not typed):
 
