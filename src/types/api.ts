@@ -771,7 +771,8 @@ export namespace Wasd {
     voting_choice_added: any
     notification: any
     settings_update: any
-    messageDeleted: any
+    messageDeleted: ChatMessageDeleted
+    paidMessage: ChatPaidMessage
   }
 
   export interface MediaStreamMetadata {
@@ -819,5 +820,22 @@ export namespace Wasd {
     created_at: Date
     expire_at: null
     online: boolean
+  }
+
+  export interface ChatMessageDeleted {
+    ids: string[]
+    userId: number
+  }
+
+  export interface ChatPaidMessage {
+    sender_id: number
+    sender_nickname: string
+    sender_avatars: Image
+    message: string
+    currency: string
+    id: string
+    price_amount: number
+    donated_at: Date
+    date_end: Date
   }
 }
