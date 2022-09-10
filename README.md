@@ -89,6 +89,8 @@ Available methods:
 - getBroadcastLimits
 - setSetting
 - getPosts
+- donwloadLiveMediaStream
+- downloadVod
 
 ### Chat
 
@@ -154,6 +156,27 @@ Methods to interact:
 - sendMessage
 - sendSticker
 
+### Downloading VODs
+
+```ts
+import { WasdTv } from 'wasdtv'
+import fs from 'fs'
+
+const wasd = new WasdTv('YOUR_API_TOKEN')
+
+// Get array of STOPPED SIGNLE containers
+const containers = await wasd.getChannelMediaContainers('STOPPED', 'SINGLE', 1372488)
+
+// Download VOD from first container of the array
+const media = wasd.downloadVod(container[0])
+media.pipe(fs.createWriteStream('video.mp4'))
+
+// Capture vod for 20s and close connection
+setTimeout(() => {
+  media.end()
+}, 20 * 1000)
+```
+
 ### Capturing Stream
 
 Yes! You can capture stream (for example, into file)
@@ -169,7 +192,7 @@ wasd.getMediaStreamMetadata(1328329).then((data) => {
   console.log(data)
 })
 
-const media = wasd.getMediaStream(1328329)
+const media = wasd.donwloadLiveMediaStream(1328329)
 media.pipe(fs.createWriteStream('video.mp4'))
 
 // Capture 20s of stream and close connection

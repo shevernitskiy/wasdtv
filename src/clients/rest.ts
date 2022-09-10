@@ -240,6 +240,29 @@ export default class RestClient {
       .catch((err) => this.errorHandler(err))
   }
 
+  public async getChannelMediaContainers(
+    media_container_status?: Wasd.MediaStatus,
+    media_container_type?: Wasd.MediaContainerType,
+    channel_id?: number,
+    limit = 20,
+    offset = 0,
+  ): Promise<Wasd.MediaContainerExtra[]> {
+    return this._axios
+      .get(`v2/media-containers/plain`, {
+        params: {
+          media_container_status: media_container_status,
+          media_container_type: media_container_type,
+          channel_id: channel_id,
+          limit: limit,
+          offset: offset,
+        },
+      })
+      .then(({ data }) => {
+        return data.result
+      })
+      .catch((err) => this.errorHandler(err))
+  }
+
   public async getProfile(): Promise<Wasd.User> {
     return this._axios
       .get('v2/profiles/current')
@@ -418,8 +441,31 @@ export default class RestClient {
   }
 
   // TODO: add options to method
-  public getMediaStream(user_id: number): PassThrough {
-    return m3u8stream(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)
+  public donwloadLiveMediaStream(user_id: number): PassThrough {
+    return this.downloadMediaByUrl(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)
+  }
+
+  public downloadMediaByUrl(url: string): PassThrough {
+    return m3u8stream(url)
+  }
+
+  public downloadVod(media_container: Wasd.MediaContainer): PassThrough {
+    if (
+      media_container.media_container_status !== 'STOPPED' &&
+      media_container.media_container_type !== 'SINGLE' &&
+      media_container.media_container_online_status !== 'PUBLIC'
+    ) {
+      throw new ApiError('MediaContanier must have status STOPPED and type SINGLE')
+    }
+
+    const archive_url = media_container.media_container_streams[0]?.stream_media[0]?.media_meta.media_archive_url
+
+    if (archive_url === undefined) {
+      throw new ApiError('Unable to fetch media url')
+    }
+
+    const download_url = archive_url?.replace('/index-', '/tracks-v1a1/index-').replace('cdn.wasd.tv', 'cdn-volta.wasd.tv') as string
+    return this.downloadMediaByUrl(download_url)
   }
 
   public async getMediaStreamMetadata(user_id: number): Promise<Wasd.MediaStreamMetadata> {

@@ -151,6 +151,16 @@ export class WasdTv extends EventEmitter {
     return this._rest.getMediaContainers(media_container_status, media_container_type, game_id, limit, offset)
   }
 
+  public async getChannelMediaContainers(
+    media_container_status: Wasd.MediaStatus = 'RUNNING',
+    media_container_type: Wasd.MediaContainerType = 'SINGLE',
+    channel_id: number,
+    limit = 20,
+    offset = 0,
+  ): Promise<Wasd.MediaContainerExtra[]> {
+    return this._rest.getChannelMediaContainers(media_container_status, media_container_type, channel_id, limit, offset)
+  }
+
   public async getChannelLinks(channel_id: number): Promise<Wasd.ChannelLink[]> {
     return this._rest.getChannelLinks(channel_id)
   }
@@ -209,8 +219,16 @@ export class WasdTv extends EventEmitter {
     return this._rest.getPosts(user_id, limit, offset)
   }
 
-  public getMediaStream(user_id: number): PassThrough {
-    return this._rest.getMediaStream(user_id)
+  public donwloadLiveMediaStream(user_id: number): PassThrough {
+    return this._rest.donwloadLiveMediaStream(user_id)
+  }
+
+  public downloadMediaByUrl(url: string): PassThrough {
+    return this._rest.downloadMediaByUrl(url)
+  }
+
+  public downloadVod(media_container: Wasd.MediaContainer): PassThrough {
+    return this._rest.downloadVod(media_container)
   }
 
   public async getMediaStreamMetadata(user_id: number): Promise<Wasd.MediaStreamMetadata> {
