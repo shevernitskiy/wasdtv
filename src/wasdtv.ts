@@ -220,7 +220,7 @@ export class WasdTv extends EventEmitter {
   }
 
   public donwloadLiveMediaStream(user_id: number): PassThrough {
-    return this._rest.donwloadLiveMediaStream(user_id)
+    return this._rest.downloadLiveMediaStream(user_id)
   }
 
   public downloadMediaByUrl(url: string): PassThrough {

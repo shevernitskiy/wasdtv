@@ -441,7 +441,7 @@ export default class RestClient {
   }
 
   // TODO: add options to method
-  public donwloadLiveMediaStream(user_id: number): PassThrough {
+  public downloadLiveMediaStream(user_id: number): PassThrough {
     return this.downloadMediaByUrl(`https://cdn-curie.wasd.tv/live/${user_id}/tracks-v1a1/mono.m3u8`)
   }
 

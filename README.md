@@ -8,7 +8,7 @@
 
 <p align=center>
   <i>
- - REST & Chat client for wasd.tv
+ REST & Chat client for wasd.tv
   </i>
 </p>
 
@@ -89,7 +89,7 @@ Available methods:
 - getBroadcastLimits
 - setSetting
 - getPosts
-- donwloadLiveMediaStream
+- downloadLiveMediaStream
 - downloadVod
 
 ### Chat
@@ -192,7 +192,7 @@ wasd.getMediaStreamMetadata(1328329).then((data) => {
   console.log(data)
 })
 
-const media = wasd.donwloadLiveMediaStream(1328329)
+const media = wasd.downloadLiveMediaStream(1328329)
 media.pipe(fs.createWriteStream('video.mp4'))
 
 // Capture 20s of stream and close connection
